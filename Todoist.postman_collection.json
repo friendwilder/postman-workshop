@@ -10,7 +10,30 @@
 			"item": [
 				{
 					"name": "Get_active_tasks",
-					"item": []
+					"item": [
+						{
+							"name": "get_active_tasks",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://api.todoist.com/rest/v1/tasks",
+									"protocol": "https",
+									"host": [
+										"api",
+										"todoist",
+										"com"
+									],
+									"path": [
+										"rest",
+										"v1",
+										"tasks"
+									]
+								}
+							},
+							"response": []
+						}
+					]
 				},
 				{
 					"name": "Create_new_task",
@@ -56,23 +79,88 @@
 				},
 				{
 					"name": "Get_an_active_task",
-					"item": []
+					"item": [
+						{
+							"name": "get_active_task",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": null
+							},
+							"response": []
+						}
+					]
 				},
 				{
 					"name": "Update_task",
-					"item": []
+					"item": [
+						{
+							"name": "update_task",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": null
+							},
+							"response": []
+						}
+					]
 				},
 				{
-					"name": "Mark_task_status_as_complete",
-					"item": []
+					"name": "Close_task",
+					"item": [
+						{
+							"name": "close_task",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": null
+							},
+							"response": []
+						}
+					]
 				},
 				{
 					"name": "Reopen_task",
-					"item": []
+					"item": [
+						{
+							"name": "reopen_task",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "https://api.todoist.com/rest/v1/tasks/4671335709/reopen",
+									"protocol": "https",
+									"host": [
+										"api",
+										"todoist",
+										"com"
+									],
+									"path": [
+										"rest",
+										"v1",
+										"tasks",
+										"4671335709",
+										"reopen"
+									]
+								}
+							},
+							"response": []
+						}
+					]
 				},
 				{
 					"name": "Delete_task",
-					"item": []
+					"item": [
+						{
+							"name": "delete_task",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": null
+							},
+							"response": []
+						}
+					]
 				}
 			]
 		}
