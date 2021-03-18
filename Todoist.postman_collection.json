@@ -1,0 +1,110 @@
+{
+	"info": {
+		"_postman_id": "aaaf143b-2bd2-4ca8-b401-a356f7fd4b25",
+		"name": "Todoist",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Tasks_management",
+			"item": [
+				{
+					"name": "Get_active_tasks",
+					"item": []
+				},
+				{
+					"name": "Create_new_task",
+					"item": [
+						{
+							"name": "create_new_task",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "",
+										"value": "",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n        \"content\": \"Comprar leche\",\n        \"due_string\": \"tomorrow at 12:00\",\n        \"due_lang\": \"en\",\n        \"priority\": 4\n    }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://api.todoist.com/rest/v1/tasks",
+									"protocol": "https",
+									"host": [
+										"api",
+										"todoist",
+										"com"
+									],
+									"path": [
+										"rest",
+										"v1",
+										"tasks"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Get_an_active_task",
+					"item": []
+				},
+				{
+					"name": "Update_task",
+					"item": []
+				},
+				{
+					"name": "Mark_task_status_as_complete",
+					"item": []
+				},
+				{
+					"name": "Reopen_task",
+					"item": []
+				},
+				{
+					"name": "Delete_task",
+					"item": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "bf5f73b5f4f9b457bce95de30d6c94e39aaed22e",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
