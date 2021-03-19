@@ -13,6 +13,29 @@
 					"item": [
 						{
 							"name": "get_active_tasks",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is success\", function () {",
+											"    pm.response.to.be.success;",
+											"});",
+											"pm.test(\"Creator authenticated as 33078376\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData[0].creator).to.eql(33078376);",
+											"});",
+											"pm.test(\"Content-Type is present\", function () {",
+											"    pm.response.to.have.header(\"Content-Type\");",
+											"});",
+											"pm.test(\"Response time is less than 200ms\", function () {",
+											"    pm.expect(pm.response.responseTime).to.be.below(300);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
 							"request": {
 								"method": "GET",
 								"header": [],
@@ -40,6 +63,29 @@
 					"item": [
 						{
 							"name": "create_new_task",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is success\", function () {",
+											"    pm.response.to.be.success;",
+											"});",
+											"pm.test(\"Creator authenticated as 33078376\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.creator).to.eql(33078376);",
+											"});",
+											"pm.test(\"Content-Type is present\", function () {",
+											"    pm.response.to.have.header(\"Content-Type\");",
+											"});",
+											"pm.test(\"Response time is less than 200ms\", function () {",
+											"    pm.expect(pm.response.responseTime).to.be.below(400);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
 							"request": {
 								"method": "POST",
 								"header": [
@@ -51,7 +97,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n        \"content\": \"Comprar leche\",\n        \"due_string\": \"tomorrow at 12:00\",\n        \"due_lang\": \"en\",\n        \"priority\": 4\n    }",
+									"raw": "{\n        \"content\": \"Comprar pan\",\n        \"due_string\": \"tomorrow at 12:00\",\n        \"due_lang\": \"en\",\n        \"priority\": 4\n    }",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -82,53 +128,34 @@
 					"item": [
 						{
 							"name": "get_active_task",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is success\", function () {",
+											"    pm.response.to.be.success;",
+											"});",
+											"pm.test(\"Creator authenticated as 33078376\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.creator).to.eql(33078376);",
+											"});",
+											"pm.test(\"Content-Type is present\", function () {",
+											"    pm.response.to.have.header(\"Content-Type\");",
+											"});",
+											"pm.test(\"Response time is less than 200ms\", function () {",
+											"    pm.expect(pm.response.responseTime).to.be.below(300);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
 							"request": {
 								"method": "GET",
-								"header": [],
-								"url": null
-							},
-							"response": []
-						}
-					]
-				},
-				{
-					"name": "Update_task",
-					"item": [
-						{
-							"name": "update_task",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": null
-							},
-							"response": []
-						}
-					]
-				},
-				{
-					"name": "Close_task",
-					"item": [
-						{
-							"name": "close_task",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": null
-							},
-							"response": []
-						}
-					]
-				},
-				{
-					"name": "Reopen_task",
-					"item": [
-						{
-							"name": "reopen_task",
-							"request": {
-								"method": "POST",
 								"header": [],
 								"url": {
-									"raw": "https://api.todoist.com/rest/v1/tasks/4671335709/reopen",
+									"raw": "https://api.todoist.com/rest/v1/tasks/4674114992",
 									"protocol": "https",
 									"host": [
 										"api",
@@ -139,7 +166,170 @@
 										"rest",
 										"v1",
 										"tasks",
-										"4671335709",
+										"4674114992"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Update_task",
+					"item": [
+						{
+							"name": "update_task",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is success\", function () {",
+											"    pm.response.to.be.success;",
+											"});",
+											"pm.test(\"Creator authenticated as 33078376\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.creator).to.eql(33078376);",
+											"});",
+											"pm.test(\"Content-Type is present\", function () {",
+											"    pm.response.to.have.header(\"Content-Type\");",
+											"});",
+											"pm.test(\"Response time is less than 200ms\", function () {",
+											"    pm.expect(pm.response.responseTime).to.be.below(350);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n        \"content\": \"Buy Coffee\"\n    }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://api.todoist.com/rest/v1/tasks/4674114992",
+									"protocol": "https",
+									"host": [
+										"api",
+										"todoist",
+										"com"
+									],
+									"path": [
+										"rest",
+										"v1",
+										"tasks",
+										"4674114992"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Close_task",
+					"item": [
+						{
+							"name": "close_task",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is success\", function () {",
+											"    pm.response.to.be.success;",
+											"});",
+											"pm.test(\"Creator authenticated as 33078376\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.creator).to.eql(33078376);",
+											"});",
+											"pm.test(\"Content-Type is present\", function () {",
+											"    pm.response.to.have.header(\"Content-Type\");",
+											"});",
+											"pm.test(\"Response time is less than 200ms\", function () {",
+											"    pm.expect(pm.response.responseTime).to.be.below(400);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "https://api.todoist.com/rest/v1/tasks/4674114992/close",
+									"protocol": "https",
+									"host": [
+										"api",
+										"todoist",
+										"com"
+									],
+									"path": [
+										"rest",
+										"v1",
+										"tasks",
+										"4674114992",
+										"close"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Reopen_task",
+					"item": [
+						{
+							"name": "reopen_task",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is success\", function () {",
+											"    pm.response.to.be.success;",
+											"});",
+											"pm.test(\"Creator authenticated as 33078376\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.creator).to.eql(33078376);",
+											"});",
+											"pm.test(\"Content-Type is present\", function () {",
+											"    pm.response.to.have.header(\"Content-Type\");",
+											"});",
+											"pm.test(\"Response time is less than 200ms\", function () {",
+											"    pm.expect(pm.response.responseTime).to.be.below(400);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "https://api.todoist.com/rest/v1/tasks/4674114992/reopen",
+									"protocol": "https",
+									"host": [
+										"api",
+										"todoist",
+										"com"
+									],
+									"path": [
+										"rest",
+										"v1",
+										"tasks",
+										"4674114992",
 										"reopen"
 									]
 								}
@@ -153,10 +343,47 @@
 					"item": [
 						{
 							"name": "delete_task",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is success\", function () {",
+											"    pm.response.to.be.success;",
+											"});",
+											"pm.test(\"Creator authenticated as 33078376\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.creator).to.eql(33078376);",
+											"});",
+											"pm.test(\"Content-Type is present\", function () {",
+											"    pm.response.to.have.header(\"Content-Type\");",
+											"});",
+											"pm.test(\"Response time is less than 200ms\", function () {",
+											"    pm.expect(pm.response.responseTime).to.be.below(400);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
 							"request": {
-								"method": "GET",
+								"method": "DELETE",
 								"header": [],
-								"url": null
+								"url": {
+									"raw": "https://api.todoist.com/rest/v1/tasks/4674114992",
+									"protocol": "https",
+									"host": [
+										"api",
+										"todoist",
+										"com"
+									],
+									"path": [
+										"rest",
+										"v1",
+										"tasks",
+										"4674114992"
+									]
+								}
 							},
 							"response": []
 						}
