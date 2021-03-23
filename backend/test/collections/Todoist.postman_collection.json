@@ -40,17 +40,9 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "https://api.todoist.com/rest/v1/tasks",
-									"protocol": "https",
+									"raw": "{{baseURL}}",
 									"host": [
-										"api",
-										"todoist",
-										"com"
-									],
-									"path": [
-										"rest",
-										"v1",
-										"tasks"
+										"{{baseURL}}"
 									]
 								}
 							},
@@ -105,17 +97,9 @@
 									}
 								},
 								"url": {
-									"raw": "https://api.todoist.com/rest/v1/tasks",
-									"protocol": "https",
+									"raw": "{{baseURL}}",
 									"host": [
-										"api",
-										"todoist",
-										"com"
-									],
-									"path": [
-										"rest",
-										"v1",
-										"tasks"
+										"{{baseURL}}"
 									]
 								}
 							},
@@ -155,17 +139,11 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "https://api.todoist.com/rest/v1/tasks/4674114992",
-									"protocol": "https",
+									"raw": "{{baseURL}}/4674114992",
 									"host": [
-										"api",
-										"todoist",
-										"com"
+										"{{baseURL}}"
 									],
 									"path": [
-										"rest",
-										"v1",
-										"tasks",
 										"4674114992"
 									]
 								}
@@ -215,17 +193,11 @@
 									}
 								},
 								"url": {
-									"raw": "https://api.todoist.com/rest/v1/tasks/4674114992",
-									"protocol": "https",
+									"raw": "{{baseURL}}/4674114992",
 									"host": [
-										"api",
-										"todoist",
-										"com"
+										"{{baseURL}}"
 									],
 									"path": [
-										"rest",
-										"v1",
-										"tasks",
 										"4674114992"
 									]
 								}
@@ -266,17 +238,11 @@
 								"method": "POST",
 								"header": [],
 								"url": {
-									"raw": "https://api.todoist.com/rest/v1/tasks/4674114992/close",
-									"protocol": "https",
+									"raw": "{{baseURL}}/4674114992/close",
 									"host": [
-										"api",
-										"todoist",
-										"com"
+										"{{baseURL}}"
 									],
 									"path": [
-										"rest",
-										"v1",
-										"tasks",
 										"4674114992",
 										"close"
 									]
@@ -318,17 +284,11 @@
 								"method": "POST",
 								"header": [],
 								"url": {
-									"raw": "https://api.todoist.com/rest/v1/tasks/4674114992/reopen",
-									"protocol": "https",
+									"raw": "{{baseURL}}/4674114992/reopen",
 									"host": [
-										"api",
-										"todoist",
-										"com"
+										"{{baseURL}}"
 									],
 									"path": [
-										"rest",
-										"v1",
-										"tasks",
 										"4674114992",
 										"reopen"
 									]
@@ -370,17 +330,11 @@
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "https://api.todoist.com/rest/v1/tasks/4674114992",
-									"protocol": "https",
+									"raw": "{{baseURL}}/4674114992",
 									"host": [
-										"api",
-										"todoist",
-										"com"
+										"{{baseURL}}"
 									],
 									"path": [
-										"rest",
-										"v1",
-										"tasks",
 										"4674114992"
 									]
 								}
@@ -397,7 +351,7 @@
 		"bearer": [
 			{
 				"key": "token",
-				"value": "bf5f73b5f4f9b457bce95de30d6c94e39aaed22e",
+				"value": "{{token}}",
 				"type": "string"
 			}
 		]
