@@ -30,6 +30,34 @@
 											"});",
 											"pm.test(\"Response time is less than 200ms\", function () {",
 											"    pm.expect(pm.response.responseTime).to.be.below(300);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseURL}}",
+									"host": [
+										"{{baseURL}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get_active_tasks_negative",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400 when no token is provided\", function () {",
+											"    pm.response.to.have.status(400);",
 											"});"
 										],
 										"type": "text/javascript"
@@ -37,6 +65,9 @@
 								}
 							],
 							"request": {
+								"auth": {
+									"type": "noauth"
+								},
 								"method": "GET",
 								"header": [],
 								"url": {
@@ -54,23 +85,72 @@
 					"name": "Create_new_task",
 					"item": [
 						{
+							"name": "create_new_task_negative",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = pm.response.json();",
+											"pm.test(\"Modifying creation date takes no effect\", function () {",
+											"    pm.expect(jsonData.created).to.not.eql(\"2020-03-23T04:38:07Z\");",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "",
+										"value": "",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n        \"content\": \"Run\",\n        \"due_string\": \"tomorrow at 13:00\",\n        \"due_lang\": \"en\",\n        \"priority\": 4,\n        \"created\": \"2020-03-23T04:38:07Z\"\n    }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}",
+									"host": [
+										"{{baseURL}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
 							"name": "create_new_task",
 							"event": [
 								{
 									"listen": "test",
 									"script": {
 										"exec": [
+											"var jsonData = pm.response.json();",
+											"",
 											"pm.test(\"Status code is success\", function () {",
 											"    pm.response.to.be.success;",
 											"});",
 											"pm.test(\"Creator authenticated as 33078376\", function () {",
-											"    var jsonData = pm.response.json();",
 											"    pm.expect(jsonData.creator).to.eql(33078376);",
 											"});",
 											"pm.test(\"Content-Type is present\", function () {",
 											"    pm.response.to.have.header(\"Content-Type\");",
 											"});",
-											"pm.test(\"Response time is less than 200ms\", function () {",
+											"pm.test(\"taskName is correct\", function () {",
+											"    pm.expect(jsonData.content).to.eql(\"Run\")",
+											"});",
+											"",
+											"pm.test(\"Response time is less than 400ms\", function () {",
 											"    pm.expect(pm.response.responseTime).to.be.below(400);",
 											"});"
 										],
@@ -89,7 +169,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n        \"content\": \"Comprar pan\",\n        \"due_string\": \"tomorrow at 12:00\",\n        \"due_lang\": \"en\",\n        \"priority\": 4\n    }",
+									"raw": "{\n        \"content\": \"Run\",\n        \"due_string\": \"tomorrow at 13:00\",\n        \"due_lang\": \"en\",\n        \"priority\": 4\n    }",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -97,9 +177,9 @@
 									}
 								},
 								"url": {
-									"raw": "{{baseURL}}",
+									"raw": "{{baseURL}}{{taskName}}",
 									"host": [
-										"{{baseURL}}"
+										"{{baseURL}}{{taskName}}"
 									]
 								}
 							},
@@ -149,6 +229,40 @@
 								}
 							},
 							"response": []
+						},
+						{
+							"name": "get_active_task_negative",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code of an invalid task is 4xx\", function () {",
+											"    pm.response.to.not.be.success;",
+											"});",
+											"pm.test(\"Status code is 404\", function () {",
+											"    pm.response.to.have.status(404);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseURL}}/15",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"15"
+									]
+								}
+							},
+							"response": []
 						}
 					]
 				},
@@ -164,13 +278,6 @@
 										"exec": [
 											"pm.test(\"Status code is success\", function () {",
 											"    pm.response.to.be.success;",
-											"});",
-											"pm.test(\"Creator authenticated as 33078376\", function () {",
-											"    var jsonData = pm.response.json();",
-											"    pm.expect(jsonData.creator).to.eql(33078376);",
-											"});",
-											"pm.test(\"Content-Type is present\", function () {",
-											"    pm.response.to.have.header(\"Content-Type\");",
 											"});",
 											"pm.test(\"Response time is less than 200ms\", function () {",
 											"    pm.expect(pm.response.responseTime).to.be.below(350);",
@@ -203,6 +310,46 @@
 								}
 							},
 							"response": []
+						},
+						{
+							"name": "update_task_negative",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Modifying creator fails\", function () {",
+											"    pm.response.to.be.not.success;",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n        \"creator\": 398908980\n    }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/4674113291",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"4674113291"
+									]
+								}
+							},
+							"response": []
 						}
 					]
 				},
@@ -218,13 +365,6 @@
 										"exec": [
 											"pm.test(\"Status code is success\", function () {",
 											"    pm.response.to.be.success;",
-											"});",
-											"pm.test(\"Creator authenticated as 33078376\", function () {",
-											"    var jsonData = pm.response.json();",
-											"    pm.expect(jsonData.creator).to.eql(33078376);",
-											"});",
-											"pm.test(\"Content-Type is present\", function () {",
-											"    pm.response.to.have.header(\"Content-Type\");",
 											"});",
 											"pm.test(\"Response time is less than 200ms\", function () {",
 											"    pm.expect(pm.response.responseTime).to.be.below(400);",
@@ -249,6 +389,37 @@
 								}
 							},
 							"response": []
+						},
+						{
+							"name": "close_task_negative",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Body matches an empty string\", function () {",
+											"    pm.expect(pm.response.text()).to.include(\"\");",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{baseURL}}/192/close",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"192",
+										"close"
+									]
+								}
+							},
+							"response": []
 						}
 					]
 				},
@@ -264,13 +435,6 @@
 										"exec": [
 											"pm.test(\"Status code is success\", function () {",
 											"    pm.response.to.be.success;",
-											"});",
-											"pm.test(\"Creator authenticated as 33078376\", function () {",
-											"    var jsonData = pm.response.json();",
-											"    pm.expect(jsonData.creator).to.eql(33078376);",
-											"});",
-											"pm.test(\"Content-Type is present\", function () {",
-											"    pm.response.to.have.header(\"Content-Type\");",
 											"});",
 											"pm.test(\"Response time is less than 200ms\", function () {",
 											"    pm.expect(pm.response.responseTime).to.be.below(400);",
@@ -290,6 +454,40 @@
 									],
 									"path": [
 										"4674114992",
+										"reopen"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "reopen_task_negative",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Reopening a non existent task fails\", function () {",
+											"    pm.response.to.be.not.success;",
+											"});",
+											"pm.test(\"Body matches string Item not found\", function () {",
+											"    pm.expect(pm.response.text()).to.include(\"Item not found\");",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{baseURL}}/42/reopen",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"42",
 										"reopen"
 									]
 								}
@@ -336,6 +534,40 @@
 									],
 									"path": [
 										"4674114992"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete_task_negative",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Deleting a non existent task fails\", function () {",
+											"    pm.response.to.be.not.success;",
+											"});",
+											"pm.test(\"Body matches string Item not found\", function () {",
+											"    pm.expect(pm.response.text()).to.include(\"Item not found\");",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseURL}}/992",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"992"
 									]
 								}
 							},
