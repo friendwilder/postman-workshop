@@ -4,7 +4,8 @@
   "description": "backend testing challenge",
   "main": "index.js",
   "scripts": {
-    "test": "newman run backend/test/collections/Todoist.postman_collection.json -e backend/test/env/BackendChallenge.postman_environment.json "
+    "test": "newman run backend/test/collections/Todoist.postman_collection.json -e backend/test/env/BackendChallenge.postman_environment.json ",
+    "report": "npx newman run backend/test/collections/Todoist.postman_collection.json -e backend/test/env/BackendChallenge.postman_environment.json -r htmlextra --reporter-htmlextra-export backend/test/reports/todoistAPITestReport.html"
   },
   "author": "",
   "license": "ISC"
