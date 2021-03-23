@@ -1,0 +1,11 @@
+{
+  "name": "todoist_backend_testing",
+  "version": "1.0.0",
+  "description": "backend testing challenge",
+  "main": "index.js",
+  "scripts": {
+    "test": "newman run backend/test/collections/Todoist.postman_collection.json -e backend/test/env/BackendChallenge.postman_environment.json "
+  },
+  "author": "",
+  "license": "ISC"
+}
